@@ -1,5 +1,15 @@
-const React, { useState } = require("react");
-import { Alert, ScrollView, TextInput } from 'react-native';
+const { useState } = require("react");
+import {
+    ScrollView,
+    Text,
+    TextInput, 
+    TouchableOpacity, 
+    View, 
+    Switch, 
+    StyleSheet,
+    Image,
+    Alert
+} from 'react-native';
 import api from '../../../services/api';
 import * as ImagePicker from 'expo-image-picker';
 import { RectButton } from 'react-native-gesture-handler';
@@ -194,4 +204,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#FFF',
     }
-});  
+});
+
+export default ProfileData;
