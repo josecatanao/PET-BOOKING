@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title: {
-        fontFamily: 'Nunito_600SemiBold',
+        //fontFamily: 'Nunito_600SemiBold',
         color: '#8fa7b3',
         fontSize: 16,
     },

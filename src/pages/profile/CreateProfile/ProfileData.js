@@ -1,4 +1,5 @@
-const { useState } = require("react");
+import React, { useState } from 'react';
+
 import {
     ScrollView,
     Text,
@@ -14,7 +15,9 @@ import api from '../../../services/api';
 import * as ImagePicker from 'expo-image-picker';
 import { RectButton } from 'react-native-gesture-handler';
 
-const ProfileData = () => {
+
+export default function ProfileData() {
+
     const [email, setEmail] = useState('');
     const [nome, setNome] = useState('');
     const [sobrenome, setSobrenome] = useState('');
@@ -36,7 +39,7 @@ const ProfileData = () => {
             uri: imageURI
         });
 
-        const response = await api.post('usuario', data);
+        const response = await api.post('/usuario', data);
         if (response.data) {
             navigation.navigate('profileDetail');
         } else {
@@ -68,37 +71,39 @@ const ProfileData = () => {
 
     return (
         <ScrollView>
-            <Text style={styles.title}>Dados</Text>
+            <Text style={styles.title}>Cadastre-se Aqui</Text>
 
             <Text style={styles.label}>E-mail</Text>
             <TextInput 
                 style={styles.input}
-                value={nome}
-                onChangeText={text => setEmail(text)}
+                onChangeText={email => setEmail(email)}
+                value={email}
+
+               
             />
 
             <Text style={styles.label}>Nome</Text>
             <TextInput 
                 style={styles.input}
+                onChangeText={nome => setNome(nome)}
                 value={nome}
-                onChangeText={text => setNome(text)}
             />
             
             <Text style={styles.label}>Sobrenome</Text>
             <TextInput 
                 style={styles.input}
-                value={nome}
-                onChangeText={text => setSobrenome(text)}
+                onChangeText={sobrenome => setSobrenome(sobrenome)}
+                value={sobrenome}
             />
 
             <Text style={styles.label}>Senha</Text>
             <TextInput 
                 style={styles.input}
-                value={nome}
-                onChangeText={text => setPassword(text)}
+                onChangeText={password => setPassword(password)}
+                value={password}
             />
 
-            <View style={switchContainer}>
+            <View style={ styles.switchContainer}>
                 <Text style={styles.label}>É admin? (Deixe desativado por padrão.)</Text>
                 <Switch
                     thumbColor="#fff"
@@ -117,7 +122,7 @@ const ProfileData = () => {
                 />
             </View>
 
-            <View style={uploadedImageContainer}>
+            <View style={styles.uploadedImageContainer}>
                 <Image
                     key={imageURI}
                     source={{uri:imageURI}}
@@ -137,31 +142,35 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         marginHorizontal:12,
+        
     },
     title:{
         color: '#5c8599',
         fontSize: 24,
-        fontFamily: 'Nunito_700Bold',
-        marginBottom: 32,
-        paddingBottom: 24,
+        fontWeight:'bold',
+        marginTop:100,
+        paddingBottom: 30,
+        marginHorizontal:100,
         borderBottomWidth: 0.8,
         borderBottomColor: '#D3E2E6'
     },
     label: {
         color: '#8fa7b3',
-        fontFamily: 'Nunito_600SemiBold',
+        marginHorizontal:25,
         marginBottom: 8,
     },
     input: {
         backgroundColor: '#fff',
         borderWidth: 1.4,
         borderColor: '#d3e2e6',
-        borderRadius: 20,
-        height: 56,
+        borderRadius: 10,
+        width:'85%',
+        height: 50,
         paddingVertical: 18,
         paddingHorizontal: 24,
         marginBottom: 16,
         textAlignVertical: 'top',
+        marginHorizontal:25
     },
     imagesInput: {
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
@@ -192,18 +201,18 @@ const styles = StyleSheet.create({
     },
     nextButton: {
         backgroundColor: '#15c3d6',
-        borderRadius: 20,
+        borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        height: 56,
-        marginTop: 32,
-        marginBottom:12
+        height: 55,
+        width:'85%',
+        marginHorizontal:25
+
     },
     nextButtonText:{
-        fontFamily: 'Nunito_800ExtraBold',
+        fontWeight:'bold',
         fontSize: 16,
         color: '#FFF',
     }
 });
 
-export default ProfileData;

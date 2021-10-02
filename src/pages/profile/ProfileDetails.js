@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect, useState  } from "react";
 
 import { 
     View, 
@@ -10,10 +10,13 @@ import {
     TouchableOpacity, 
     Linking
 } from 'react-native';
+
+import { useRoute } from '@react-navigation/native';
   
-const ProfileDetails = () => {
-    const Route = useRoute();
-    const { id } = route.params;
+export default function ProfileDetails () {
+
+    const route = useRoute();
+    const  id  = route.params;
     const [perfil, setPerfil] = useState();
 
     useEffect(() => {
@@ -23,7 +26,8 @@ const ProfileDetails = () => {
     }, [id]);
 
     if (!perfil) {
-        return <AppLoading/>;
+        return alert("error");
+        //return <AppLoading/>;
     }
 
     return (
@@ -173,5 +177,3 @@ const styles = StyleSheet.create({
         marginLeft: 16,
     }
 });
-
-export default ProfileDetails;
