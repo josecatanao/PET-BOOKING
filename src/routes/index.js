@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import ProfileDetails from '../pages/profile/ProfileDetails';
 import ProfileData from '../pages/profile/CreateProfile/ProfileData';
 import Cadastro from '../pages/CadastroAgenda/paginaCadatroAgenda';
+import Agenda from "../pages/HorariosAgendados/paginaHorariosAgendados"
 import Login from '../pages/Login/login';
 
 import  Header  from '../components/Header';
@@ -16,23 +17,32 @@ export default function Routes() {
     return (
         <NavigationContainer>
         <Navigator>
-        <Screen
-                name="login"
-                component={Login}
+            <Screen
+                name="Agenda"
+                component={Agenda}
                 options={{
                     headerShown: false,
-                    
+                    header: () => <Header title='Agenda'/>
                 }}
             />
-             <Screen
+
+            <Screen
                 name="cadastro"
                 component={Cadastro}
                 options={{
                     headerShown: false,
-                    header: () => <Header title='teste'/>
+                    header: () => <Header title='cadastro'/>
                 }}
             />
-            
+            <Screen
+                name="login"
+                component={Login}
+                options={{
+                    headerShown: false,
+
+                }}
+            />
+                    
             <Screen
                 name="ProfileData"
                 component={ProfileData}
