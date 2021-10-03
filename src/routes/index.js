@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-
 import ProfileDetails from '../pages/profile/ProfileDetails';
 import ProfileData from '../pages/profile/CreateProfile/ProfileData';
 import Cadastro from '../pages/CadastroAgenda/paginaCadatroAgenda';
@@ -18,6 +17,14 @@ export default function Routes() {
         <NavigationContainer>
         <Navigator>
             <Screen
+                name="cadastro"
+                component={Cadastro}
+                options={{
+                    headerShown: false,
+                    header: () => <Header title='cadastro'/>
+                }}
+            />
+            <Screen
                 name="Agenda"
                 component={Agenda}
                 options={{
@@ -26,14 +33,6 @@ export default function Routes() {
                 }}
             />
 
-            <Screen
-                name="cadastro"
-                component={Cadastro}
-                options={{
-                    headerShown: false,
-                    header: () => <Header title='cadastro'/>
-                }}
-            />
             <Screen
                 name="login"
                 component={Login}

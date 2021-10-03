@@ -1,9 +1,21 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from 'react-native';
 
 
 
 export default function Cadastro() {
+
+    const [dia,setDia] = useState('');
+    const [periodo,setPeriodo] = useState('');
+    const [horario,setHorario] = useState('');
+
+    function enviarDados(){
+       //dia
+       //periodo
+       //horario 
+
+    }
+
     return(
         <View  style={styles.blocoTudo}> 
             <Text  style={styles.titulo} >Cadastro da agenda</Text>
@@ -13,20 +25,28 @@ export default function Cadastro() {
             ></Image>
 
         <TextInput
-           style={styles.input}
+            style={styles.input}
+            value={dia}
+            onChangeText={ (dia)=>setDia(dia) }
             placeholder="Digite o dia Ex:21"
+            keyboardType="numeric"
          />
          <TextInput
            style={styles.input}
-            placeholder="Período Ex: Manhã "
+           value={periodo}
+           onChangeText={ (periodo)=>setPeriodo(periodo) }
+           placeholder="Período Ex: Manhã "
          />
          <TextInput
            style={styles.input}
-            placeholder="Horário Ex: 8:30 ~ 9:00"
+           value={horario}
+           onChangeText={ (horario)=>setHorario(horario) }
+           placeholder="Horário Ex: 8:30 ~ 9:00"
          />
 
         <TouchableOpacity
             style={styles.button}
+            onPress={enviarDados}
         >
             <Text style={styles.buttonText}>Cadastrar</Text>
         </TouchableOpacity>
