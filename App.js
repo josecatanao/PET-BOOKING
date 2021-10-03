@@ -1,23 +1,13 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import  Routes  from './src/routes/';
+import Routes from './src/routes';
+import AuthContextComponent from './src/context/auth';
 
-function App() {
-  return (
-    <NavigationContainer>
-      <Routes/>
-    </NavigationContainer>
+
+export default function App(){
+  return(
+   <AuthContextComponent>
+      <Routes />
+    </AuthContextComponent>
+   
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-export default App;
