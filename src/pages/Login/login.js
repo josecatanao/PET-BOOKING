@@ -61,8 +61,8 @@ export default function Login() {
                     <Text style={styles.buttonText}>Entrar</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => Cadastro()}>
-                    <Text>Cadastra-se</Text>
+                <TouchableOpacity style={styles.onlyText} onPress={() => Cadastro()}>
+                    <Text style={styles.onlyTextText}>Cadastra-se</Text>
                 </TouchableOpacity>
 
             </View>
@@ -109,5 +109,17 @@ const styles = StyleSheet.create({
         color: "#FFFF",
         fontWeight: "bold"
 
+    },
+    onlyText:{
+        color: "#88A2E7",
+        marginTop: 20,
+        width: 170,
+        height: 44,
+        alignItems: "center",
+        borderRadius: 5,
+        padding: 10,
+    },
+    onlyTextText:{
+        color: "#88A2E7",
     }
 });
