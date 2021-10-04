@@ -15,6 +15,8 @@ import api from '../../../services/api';
 import * as ImagePicker from 'expo-image-picker';
 import { RectButton } from 'react-native-gesture-handler';
 
+import {Feather} from "@expo/vector-icons";
+
 
 export default function ProfileData() {
 
@@ -76,13 +78,17 @@ export default function ProfileData() {
 
             <Text style={styles.title}>Cadastre-se Aqui</Text>
 
-
             <View style={styles.uploadedImageContainer}>
-                <Image
-                    key={imageURI}
-                    source={{uri:imageURI}}
-                    style={styles.uploadedImage}
-                />
+                <RectButton style={styles.uploadedImageContainer} onPress={handleSelectImage}>
+                    <Image
+                        key={imageURI}
+                        source={{uri:imageURI}}
+                        style={styles.uploadedImage}
+                    />
+                </RectButton>
+                <RectButton style={styles.imagesInput} onPress={handleSelectImage}>
+                    <Feather name="plus" size={24} color="#15B6D6"/>
+                </RectButton>    
             </View>
 
             <TextInput 
@@ -136,10 +142,6 @@ export default function ProfileData() {
                 />
             </View>
 
-            <RectButton style={styles.nextButton} onPress={handleSelectImage}>
-                <Text style={styles.nextButtonText}>Carregar Foto</Text>
-            </RectButton>
-
             <RectButton style={styles.nextButton} onPress={handleCreateProfile}>
                 <Text style={styles.nextButtonText}>Finalizar Cadastro</Text>
             </RectButton>
@@ -186,29 +188,33 @@ const styles = StyleSheet.create({
         marginHorizontal:35
     },
     imagesInput: {
+        backgroundColor: 'rgba(255, 255, 255, 1)',
+        borderStyle: 'dashed',
+        borderColor: '#96D2F0',
+        borderWidth: 1.4,
+        borderRadius: 20,
+        position:'absolute',
+        left:40,
+        bottom:40,
+    },
+    uploadedImageContainer:{
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
         borderStyle: 'dashed',
         borderColor: '#96D2F0',
         borderWidth: 1.4,
         borderRadius: 20,
-        height: 56,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 32,
-
-
-    },
-    uploadedImageContainer:{
+        width:64,
+        height:64,
+        margin:5,
         flexDirection:'row',
         justifyContent: 'center',
         alignItems: 'center',
+        alignSelf:'center',
     },
     uploadedImage:{
         width:64,
         height:64,
         borderRadius:20,
-        marginBottom:32,
-        marginRight:8,
         justifyContent: 'center',
         alignItems: 'center',
     },
