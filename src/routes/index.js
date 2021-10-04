@@ -18,7 +18,7 @@ export default function Routes() {
         <NavigationContainer>
         <Navigator>
         <Screen
-                name="login"
+                name="Login"
                 component={Login}
                 options={{
                     headerShown: false,

@@ -14,8 +14,12 @@ import {
 import api from '../../../services/api';
 import * as ImagePicker from 'expo-image-picker';
 import { RectButton } from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import mime from 'mime'
+import FormData from 'form-data';
 
 import {Feather} from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native'
 
 
 export default function ProfileData() {
@@ -25,7 +29,11 @@ export default function ProfileData() {
     const [sobrenome, setSobrenome] = useState('');
     const [password, setPassword] = useState('');
     const [tipoUsuario, setTipoUsuario] = useState('final');
-    const [imageURI, setImageURI] = useState('');
+    
+    const Navigation = useNavigation();
+    
+    const [imageURI, setImageURI] = useState(null);
+    const [data, setData] = useState(null);
 
     
 
@@ -49,28 +57,56 @@ export default function ProfileData() {
 
         const {uri} = result;
         setImageURI(uri);
+        setData(result)
     }
+ 
     async function handleCreateProfile() {
-        const data = new FormData();
-
-        data.append('email', email);
-        data.append('nome', nome);
-        data.append('sobrenome', sobrenome);
-        data.append('password', password);
-        data.append('tipoUsuario', tipoUsuario);
-        data.append('imagem', {
-            name: 'imagem.jpg',
-            type: 'image/jpeg',
-            uri: imageURI
-        });
-
-        const response = await api.post('/usuario', data);
-        if (response.data) {
-            navigation.navigate('profileDetail');
-        } else {
-            Alert.alert('Não possível efetuar o cadastro. Se eu fosse vc verificaria o caps lock.');
+        try {
+          
+          const token = await AsyncStorage.getItem("Auth:Token");
+          const requestConfigFile = {
+            headers: {
+            Authorization: `bearer ${token}`,
+            Accept: "application/json",
+            "Content-Type": "multipart/form-data"
+          
+            }
+          };
+    
+          const dataFile = new FormData();
+          const fileURL = data.uri;
+          const newImageUri =  "file:///" + fileURL.toString().split("file:/").join("");
+    
+    
+          dataFile.append("file", {
+            uri:  newImageUri, // Caminho da imagem
+            name: newImageUri.split("/").pop(),
+            type: mime.getType(data.uri),
+          });
+          dataFile.append("email", email);
+          
+          dataFile.append('nome', nome);
+          dataFile.append('sobrenome', sobrenome);
+          dataFile.append('password', password);
+          dataFile.append('tipoUsuario', tipoUsuario);
+          
+    
+    
+    
+          const response = await api.post('/usuario', dataFile, requestConfigFile);
+          console.log(response);  
+          Alert.alert('Mensagem',"Cadastro concluido !")
+         
+          
+         
+        } catch (err) {
+          console.log(err.response);
+          Alert.alert('ERRO','erro ao cadastrar');
+            alert(err);
+            
         }
     }
+    
 
     return (
         <View style={styles.container}>
