@@ -17,7 +17,7 @@ export default function Routes() {
     return (
         <NavigationContainer>
         <Navigator>
-        <Screen
+            <Screen
                 name="Login"
                 component={Login}
                 options={{
@@ -38,11 +38,10 @@ export default function Routes() {
                 name="cadastro"
                 component={Cadastro}
                 options={{
-                    headerShown: false,
+                    headerShown: true,
                     header: () => <Header title='cadastro'/>
                 }}
             />
-         
                     
             <Screen
                 name="ProfileData"
@@ -52,6 +51,7 @@ export default function Routes() {
                    
                 }}
             />
+
             <Screen
                 name="ProfileDetails"
                 component={ProfileDetails}
