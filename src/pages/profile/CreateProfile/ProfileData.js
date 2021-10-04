@@ -25,27 +25,7 @@ export default function ProfileData() {
     const [tipoUsuario, setTipoUsuario] = useState('final');
     const [imageURI, setImageURI] = useState('');
 
-    async function handleCreateProfile() {
-        const data = new FormData();
-
-        data.append('email', email);
-        data.append('nome', nome);
-        data.append('sobrenome', sobrenome);
-        data.append('password', password);
-        data.append('tipoUsuario', tipoUsuario);
-        data.append('imagem', {
-            name: 'imagem.jpg',
-            type: 'image/jpeg',
-            uri: imageURI
-        });
-
-        const response = await api.post('/usuario', data);
-        if (response.data) {
-            navigation.navigate('profileDetail');
-        } else {
-            Alert.alert('Não possível efetuar o cadastro. Se eu fosse vc verificaria o caps lock.');
-        }
-    }
+    
 
     async function handleSelectImage() {
 
@@ -68,13 +48,45 @@ export default function ProfileData() {
         const {uri} = result;
         setImageURI(uri);
     }
+    async function handleCreateProfile() {
+        const data = new FormData();
+
+        data.append('email', email);
+        data.append('nome', nome);
+        data.append('sobrenome', sobrenome);
+        data.append('password', password);
+        data.append('tipoUsuario', tipoUsuario);
+        data.append('imagem', {
+            name: 'imagem.jpg',
+            type: 'image/jpeg',
+            uri: imageURI
+        });
+
+        const response = await api.post('/usuario', data);
+        if (response.data) {
+            navigation.navigate('profileDetail');
+        } else {
+            Alert.alert('Não possível efetuar o cadastro. Se eu fosse vc verificaria o caps lock.');
+        }
+    }
 
     return (
+        <View style={styles.container}>
         <ScrollView>
+
             <Text style={styles.title}>Cadastre-se Aqui</Text>
 
-            <Text style={styles.label}>E-mail</Text>
+
+            <View style={styles.uploadedImageContainer}>
+                <Image
+                    key={imageURI}
+                    source={{uri:imageURI}}
+                    style={styles.uploadedImage}
+                />
+            </View>
+
             <TextInput 
+                placeholder="Digite Seu E-mail"
                 style={styles.input}
                 onChangeText={email => setEmail(email)}
                 value={email}
@@ -82,22 +94,24 @@ export default function ProfileData() {
                
             />
 
-            <Text style={styles.label}>Nome</Text>
             <TextInput 
+            placeholder="Nome"
                 style={styles.input}
                 onChangeText={nome => setNome(nome)}
                 value={nome}
             />
             
-            <Text style={styles.label}>Sobrenome</Text>
+            
             <TextInput 
+                placeholder="Sobrenome"
                 style={styles.input}
                 onChangeText={sobrenome => setSobrenome(sobrenome)}
                 value={sobrenome}
             />
 
-            <Text style={styles.label}>Senha</Text>
+        
             <TextInput 
+                placeholder="Senha"
                 style={styles.input}
                 onChangeText={password => setPassword(password)}
                 value={password}
@@ -122,37 +136,37 @@ export default function ProfileData() {
                 />
             </View>
 
-            <View style={styles.uploadedImageContainer}>
-                <Image
-                    key={imageURI}
-                    source={{uri:imageURI}}
-                    style={styles.uploadedImage}
-                />
-            </View>
+            <RectButton style={styles.nextButton} onPress={handleSelectImage}>
+                <Text style={styles.nextButtonText}>Carregar Foto</Text>
+            </RectButton>
 
             <RectButton style={styles.nextButton} onPress={handleCreateProfile}>
                 <Text style={styles.nextButtonText}>Finalizar Cadastro</Text>
             </RectButton>
+
         </ScrollView>
+        </View>
     );
 }
 
 
 const styles = StyleSheet.create({
     container:{
-        flex:1,
-        marginHorizontal:12,
-        
+        flex: 1,
+        borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: "center",
+        backgroundColor: "#FFFFFF"
+    
     },
     title:{
-        color: '#5c8599',
+        color: '#88A2E7',
         fontSize: 24,
         fontWeight:'bold',
-        marginTop:100,
+        marginTop:80,
         paddingBottom: 30,
         marginHorizontal:100,
-        borderBottomWidth: 0.8,
-        borderBottomColor: '#D3E2E6'
+      
     },
     label: {
         color: '#8fa7b3',
@@ -160,17 +174,16 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     },
     input: {
-        backgroundColor: '#fff',
-        borderWidth: 1.4,
-        borderColor: '#d3e2e6',
-        borderRadius: 10,
-        width:'85%',
-        height: 50,
-        paddingVertical: 18,
-        paddingHorizontal: 24,
-        marginBottom: 16,
-        textAlignVertical: 'top',
-        marginHorizontal:25
+        width: 330,
+        height: 44,
+        margin: 14,
+        borderWidth: 1,
+        borderColor: "#ECECEC",
+        borderRadius: 5,
+        padding: 10,
+        textAlign: "center",
+        fontSize: 15,
+        marginHorizontal:35
     },
     imagesInput: {
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
@@ -182,16 +195,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 32,
+
+
     },
     uploadedImageContainer:{
         flexDirection:'row',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     uploadedImage:{
         width:64,
         height:64,
         borderRadius:20,
         marginBottom:32,
-        marginRight:8
+        marginRight:8,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     switchContainer: {
         flexDirection: 'row',
@@ -200,13 +219,13 @@ const styles = StyleSheet.create({
         marginTop: 16,
     },
     nextButton: {
-        backgroundColor: '#15c3d6',
-        borderRadius: 10,
+        backgroundColor: "#88A2E7",
         justifyContent: 'center',
         alignItems: 'center',
         height: 55,
         width:'85%',
-        marginHorizontal:25
+        marginHorizontal:25,
+        marginTop:20,
 
     },
     nextButtonText:{
