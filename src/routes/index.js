@@ -38,8 +38,8 @@ export default function Routes() {
                 name="cadastro"
                 component={Cadastro}
                 options={{
-                    headerShown: true,
-                    header: () => <Header title='cadastro'/>
+                    headerShown: false,
+                  
                 }}
             />
                     
