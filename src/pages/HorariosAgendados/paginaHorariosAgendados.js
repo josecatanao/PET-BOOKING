@@ -9,12 +9,12 @@ export default function Agenda() {
         <View style={styles.blocoTudoA}>
             <Text style={styles.titulo}>Horários agendados</Text>
             <ScrollView>
-            <BlocoDiaAgendado data="23" turno="Manhã" horario="08:00 ~ 12:00"/>
-            <BlocoDiaAgendado data="3" turno="Tarde" horario="14:00 ~ 15:00"/>
-            <BlocoDiaAgendado data="5" turno="manhã" horario="18:00 ~ 16:00"/>
-            <BlocoDiaAgendado data="8" turno="Tarde" horario="18:00 ~ 16:00"/>
-            <BlocoDiaAgendado data="9" turno="manhã" horario="18:00 ~ 16:00"/>
-            <BlocoDiaAgendado data="12" turno="Tarde" horario="18:00 ~ 16:00"/>
+            <BlocoDiaAgendado data="10-11-2021" turno="Banho e Tosa" horario="Preciso dar um banho no meu cachorro lulu ele estar podre"/>
+            <BlocoDiaAgendado data="10-11-2021" turno="Banho e Tosa" horario="Preciso dar um banho no meu cachorro lulu ele estar podre"/>
+            <BlocoDiaAgendado data="10-11-2021" turno="Banho e Tosa" horario="Preciso dar um banho no meu cachorro lulu ele estar podre"/>
+            <BlocoDiaAgendado data="10-11-2021" turno="Banho e Tosa" horario="Preciso dar um banho no meu cachorro lulu ele estar podre"/>
+            <BlocoDiaAgendado data="10-11-2021" turno="Banho e Tosa" horario="Preciso dar um banho no meu cachorro lulu ele estar podre"/>
+            <BlocoDiaAgendado data="01-11-2021" turno="Banho e Tosa" horario="Preciso dar um banho no meu cachorro lulu ele estar podre Preciso dar um banho no meu"/>
             </ScrollView>
         </View>        
     )

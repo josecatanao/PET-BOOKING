@@ -5,6 +5,7 @@ import ProfileDetails from '../pages/profile/ProfileDetails';
 import ProfileData from '../pages/profile/CreateProfile/ProfileData';
 import Cadastro from '../pages/CadastroAgenda/paginaCadatroAgenda';
 import Agenda from "../pages/HorariosAgendados/paginaHorariosAgendados"
+import Diascadastrados from "../pages/HorariosAgendados/paginaDiascadastrados"
 import Login from '../pages/Login/login';
 
 import  Header  from '../components/Header';
@@ -17,14 +18,6 @@ export default function Routes() {
         <NavigationContainer>
         <Navigator>
             <Screen
-                name="cadastro"
-                component={Cadastro}
-                options={{
-                    headerShown: false,
-                    header: () => <Header title='cadastro'/>
-                }}
-            />
-            <Screen
                 name="Agenda"
                 component={Agenda}
                 options={{
@@ -32,9 +25,25 @@ export default function Routes() {
                     header: () => <Header title='Agenda'/>
                 }}
             />
-
             <Screen
-                name="login"
+                name="dias cadastrados"
+                component={ Diascadastrados}
+                options={{
+                    headerShown: false,
+                    header: () => <Header title='dias cadastrados'/>
+                }}
+            />
+           
+          <Screen
+                name="cadastro"
+                component={Cadastro}
+                options={{
+                    headerShown: false,
+                    header: () => <Header title='Cadastro'/>
+                }}
+            />
+            <Screen
+                name="Login"
                 component={Login}
                 options={{
                     headerShown: false,
@@ -50,6 +59,7 @@ export default function Routes() {
                    
                 }}
             />
+
             <Screen
                 name="ProfileDetails"
                 component={ProfileDetails}

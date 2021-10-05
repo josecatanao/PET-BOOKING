@@ -60,7 +60,7 @@ export default function ProfileData() {
         setData(result)
     }
  
-    async function handleCreateProfile() {
+    async function handleUpdateProfile() {
         try {
           
           const token = await AsyncStorage.getItem("Auth:Token");
@@ -75,6 +75,7 @@ export default function ProfileData() {
     
           const dataFile = new FormData();
           const fileURL = data.uri;
+          const  id  = route.params;
           const newImageUri =  "file:///" + fileURL.toString().split("file:/").join("");
     
     
@@ -93,10 +94,15 @@ export default function ProfileData() {
     
     
     
-          const response = await api.post('/usuario', dataFile, requestConfigFile);
+          const response = await api.put(`usuario/${id}`, dataFile, requestConfigFile);
           console.log(response);  
-          Alert.alert('Mensagem',"Cadastro concluido !")
+          Alert.alert('Mensagem',"Edição concluida !")
          
+          if(response.data){
+              navigation.navigate('ProfileDetails');
+          }else{
+              Alert.alert('Error: não foi possível editar os dados');
+          }
           
          
         } catch (err) {
@@ -178,7 +184,7 @@ export default function ProfileData() {
                 />
             </View>
 
-            <RectButton style={styles.nextButton} onPress={handleCreateProfile}>
+            <RectButton style={styles.nextButton} onPress={handleUpdateProfile}>
                 <Text style={styles.nextButtonText}>Finalizar Cadastro</Text>
             </RectButton>
 

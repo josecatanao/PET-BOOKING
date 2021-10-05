@@ -1,21 +1,35 @@
-import React,{useState} from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Alert} from 'react-native';
 
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import api from '../../services/api' 
 
 export default function Cadastro() {
 
-    const [dia,setDia] = useState('');
-    const [periodo,setPeriodo] = useState('');
-    const [horario,setHorario] = useState('');
+    const [data, setData] = useState('')
+    const [tipoAtendimento, setTipoatendimento] = useState('')
+    const [descricao, setDescricao] = useState('')
 
-    function enviarDados(){
-       //dia
-       //periodo
-       //horario 
 
+    async function cadastrarHorario() {
+        try {
+            const horario = {
+                data,
+                tipoAtendimento,
+                descricao
+            }
+            const token = await AsyncStorage.getItem("Auth:Token");
+            await api.post('/agenda', horario,
+             {headers: {"Authorization": `Bearer ${token}`}})
+             Alert.alert("mensagem", "Cadastrado na agenda com sucesso")
+             
+        }catch(error){
+            console.log(error.response);
+            alert(error);
+            Alert.alert('ERRO','erro ao cadastrar');
+             
+        }
     }
-
     return(
         <View  style={styles.blocoTudo}> 
             <Text  style={styles.titulo} >Cadastro da agenda</Text>
@@ -24,35 +38,36 @@ export default function Cadastro() {
                  source={require('../../../assets/foto1.jpg')}
             ></Image>
 
-        <TextInput
-            style={styles.input}
-            value={dia}
-            onChangeText={ (dia)=>setDia(dia) }
-            placeholder="Digite o dia Ex:21"
-            keyboardType="numeric"
+            <TextInput
+           style={styles.input}
+            placeholder="Digite a Data Ex: 10-10-2021"
+            onChangeText={data => setData(data)}
+            value={data}
          />
          <TextInput
            style={styles.input}
-           value={periodo}
-           onChangeText={ (periodo)=>setPeriodo(periodo) }
-           placeholder="Período Ex: Manhã "
+            placeholder="Tipo de Atendimento"
+            onChangeText={tipoAtendimento => setTipoatendimento(tipoAtendimento)}
+            value={tipoAtendimento}
          />
          <TextInput
            style={styles.input}
-           value={horario}
-           onChangeText={ (horario)=>setHorario(horario) }
-           placeholder="Horário Ex: 8:30 ~ 9:00"
+            placeholder="Descrição"
+            onChangeText={descricao => setDescricao(descricao)}
+            value={descricao}
          />
 
         <TouchableOpacity
             style={styles.button}
-            onPress={enviarDados}
-        >
+            onPress={cadastrarHorario}>
+        
             <Text style={styles.buttonText}>Cadastrar</Text>
         </TouchableOpacity>
         </View> 
     )
 }
+
+
 
 const styles = StyleSheet.create({
     blocoTudo:{
