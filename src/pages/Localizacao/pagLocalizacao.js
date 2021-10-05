@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, View, Text, Dimensions} from 'react-native';
-import { Feather } from '@expo/vector-icons';
 import MapView, {Marker, Callout, PROVIDER_GOOGLE} from 'react-native-maps';
 
 import mapMarker from '../../../assets/mapMarker.png';
@@ -20,28 +19,22 @@ export default function PagLocalizacao() {
                 longitudeDelta: 0.00421,
               }}
             > 
-             <Marker
+              <Marker
                 icon={mapMarker}
                 coordinate= {{
                     latitude: -6.8796777,
                     longitude: -38.564648614,
-                }}
-                calloutAnchor={{
-                    x:2.7,
-                    y:0.8
-                }}
+                }} 
              >
-                 <Callout
-                    tooltip= {true}
-                    onPress={() => {}}
-                 >
-                     <View style={styles.calloutContanier}>
-                         <Text style={styles.calloutText}>
-                            Clinica Veterinária
-                         </Text>
+                 <Callout tooltip>
+                     <View style={styles.calloutContainer}>
+                         <Text style={styles.calloutText}>Clinvet</Text>
+                         <Text style={styles. calloutTextDescription}>Clínica veterinária</Text>
                      </View>
+                     
+                    
                  </Callout>
-             </Marker>   
+             </Marker>  
            </MapView>
        </View>
     )
@@ -63,13 +56,18 @@ const styles = StyleSheet.create({
         height:46,
         paddingHorizontal:16,
         backgroundColor:'rgba(255,255,255,0.8)',
-        borderRadius:16,
+        borderRadius:6,
         justifyContent:'center',
       },
       calloutText:{
-        color:'#8889a5',
-        fontSize:14,
+        fontSize:16,
+        marginBottom: 5,
         fontFamily:'Nunito_700Bold'
+      },
+      calloutTextDescription:{
+        fontSize:16,
+        marginBottom: 5,
+        color: '#007a87',
       }
   });
 
