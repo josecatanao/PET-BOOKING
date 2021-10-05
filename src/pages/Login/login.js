@@ -32,23 +32,21 @@ export default function Login() {
         Navigation.navigate("ProfileData");
     };
 
-
-
     return (
         <>
             <View style={styles.blocoTudo}>
 
                 <Image
                     style={styles.foto1}
-                    source={require('../../../assets/foto4.jpg')}
-                ></Image>
+                    source={require('../../../assets/foto4.png')}>
+                </Image>
 
-                <TextInput placeholder="Digite Seu E-mail"
+                <TextInput placeholder="Email"
                     style={styles.input}
                     onChangeText={email => setEmail(email)}
                     value={email} />
 
-                <TextInput placeholder="Digite sua Senha"
+                <TextInput placeholder="Senha"
                     style={styles.input}
                     secureTextEntry={true}
                     onChangeText={password => setPassword(password)}
@@ -60,6 +58,14 @@ export default function Login() {
 
                     <Text style={styles.buttonText}>Entrar</Text>
                 </TouchableOpacity>
+
+                <View style={styles.line}> 
+                    <View style={styles.line1} />
+                    <View>
+                        <Text style={styles.lineText}>ou</Text>
+                    </View>
+                    <View style={styles.line2} />
+                </View>
 
                 <TouchableOpacity style={styles.onlyText} onPress={() => Cadastro()}>
                     <Text style={styles.onlyTextText}>Cadastra-se</Text>
@@ -74,28 +80,28 @@ const styles = StyleSheet.create({
     blocoTudo: {
         flex: 1,
         alignItems: 'center',
+        justifyContent: "center",
         backgroundColor: "#FFFFFF"
     },
     foto1: {
-        width: 200,
-        height: 200,
-        marginTop: 50,
-        marginBottom: 10
+        width: 490,
+        height: 450,
+        left: -20,
+        marginTop: 10,
     },
     input: {
+        top: -20,
         width: 330,
         height: 44,
-        margin: 14,
+        margin: 7,
         borderWidth: 1,
         borderColor: "#ECECEC",
         borderRadius: 5,
         padding: 10,
-        textAlign: "center",
         fontSize: 15,
     },
     button: {
-        marginTop: 40,
-        width: 170,
+        width: 330,
         height: 44,
         alignItems: "center",
         borderRadius: 5,
@@ -108,16 +114,46 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
 
     },
-    onlyText:{
+    onlyText: {
         color: "#88A2E7",
-        marginTop: 20,
-        width: 170,
+        marginTop: 10,
+        width: 330,
         height: 44,
         alignItems: "center",
         borderRadius: 5,
         padding: 10,
+        borderWidth: 2,
+        borderColor: "#88A2E7",
+        borderRadius: 5,
     },
-    onlyTextText:{
+    onlyTextText: {
         color: "#88A2E7",
-    }
+        fontWeight: "bold",
+    },
+
+    line: {
+        flexDirection: 'row',
+        width: 330,
+        alignItems: 'center',
+        marginTop: 10,
+    },
+
+    line1: {
+        flex: 1,
+        height: 1.7,
+        backgroundColor: '#ECECEC',
+    },
+
+    line2: {
+        flex: 1,
+        height: 1.7,
+        backgroundColor: '#ECECEC',  
+    },
+
+    lineText: {
+        fontSize:20,
+        color: '#ECECEC',
+        width: 40,
+        textAlign: 'center',
+    },
 });
