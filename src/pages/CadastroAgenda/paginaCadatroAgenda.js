@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Alert} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useNavigation } from '@react-navigation/native'
 import api from '../../services/api' 
 
 export default function Cadastro() {
+    const Navigation = useNavigation();
 
     const [data, setData] = useState('')
     const [tipoAtendimento, setTipoatendimento] = useState('')
@@ -29,6 +31,9 @@ export default function Cadastro() {
             Alert.alert('ERRO','erro ao cadastrar');
              
         }
+    }
+    function verHorario(){
+        Navigation.navigate("Agenda")
     }
     return(
         <View  style={styles.blocoTudo}> 
@@ -63,7 +68,18 @@ export default function Cadastro() {
         
             <Text style={styles.buttonText}>Cadastrar</Text>
         </TouchableOpacity>
+
+
+        <TouchableOpacity
+            style={styles.button}
+            onPress={verHorario}>
+        
+            <Text style={styles.buttonText}>Ver Agenda</Text>
+        </TouchableOpacity>
+        
         </View> 
+
+        
     )
 }
 
