@@ -84,13 +84,13 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFFFFF"
     },
     foto1: {
-        width: 490,
+        width: 460,
         height: 450,
-        left: -20,
-        marginTop: 10,
+        left: -8,
+        top: -30,
     },
     input: {
-        top: -20,
+        top: -60,
         width: 330,
         height: 44,
         margin: 7,
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
     },
     button: {
+        top: -40,
         width: 330,
         height: 44,
         alignItems: "center",
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
     },
     onlyText: {
         color: "#88A2E7",
-        marginTop: 10,
+        top: -20,
         width: 330,
         height: 44,
         alignItems: "center",
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: 330,
         alignItems: 'center',
-        marginTop: 10,
+        top: -30,
     },
 
     line1: {
