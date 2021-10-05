@@ -8,17 +8,22 @@ import {
     Dimensions,
     Image, 
     TouchableOpacity, 
-    Linking
+    Linking,
+    RectButton,
+    Alert,
 } from 'react-native';
 
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
   
 export default function ProfileDetails () {
 
     const route = useRoute();
+    const Navigation = useNavigation();
     const  id  = route.params;
     const [perfil, setPerfil] = useState();
+    const [imageURI, setImageURI] = useState(null);
 
+/* TO DO carregar o perfil logado;
     useEffect(() => {
         api.get(`usuario/${id}`).then(response => {
             setPerfil(response.data);
@@ -29,24 +34,158 @@ export default function ProfileDetails () {
         return alert("error");
         //return <AppLoading/>;
     }
+*/
+
+    function apagar(){
+        Alert.alert(
+            "Confimação",
+            "Tem certeza que você deseja deletar sua conta?",
+            [
+            {
+                text: "Não",
+                onPress: () => {},
+                style: "cancel",
+            },
+            {
+                text: "Sim",
+                onPress: () => {
+                    // TO DO logica de apagar perfil;
+                    Navigation.navigate("Login");
+                },
+                style: "cancel",
+            },
+            ],
+            {
+            cancelable: true,
+            onDismiss: () => {}
+            }
+        );
+    }
+
+    function editar() {
+        // TO DO logica de atualizar perfil;
+        Navigation.navigate("ProfileUpdate");
+    };
 
     return (
-        <ScrollView style={styles.container}>
-            <View style={styles.imagesContainer}>
-                <Image
-                    key={image.id}
-                    source={{uri:image.url}}
-                    style={styles.image}
-                />
+        <View style={styles.container}>
+        <ScrollView>
+            <View>
+                <View style={styles.buttonGroup}>
+                    <View style={styles.editGroup}>
+                        <TouchableOpacity onPress={editar}>
+                        <Image
+                            style={styles.logoedit}
+                            source={require('../../../assets/foto7.jpg')}
+                        ></Image>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={apagar}>
+                        <Image
+                            style={styles.logoedit}
+                            onPress={apagar}
+                            source={require('../../../assets/foto6.jpg')}
+                        ></Image>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <View style={styles.dataGroupImageField}>
+                    <View style={styles.uploadedImageContainer}>
+                        {/* Se possível, colocar o componente <Image/> aqui dentro com a imagem de perfil do usuário logado */}
+                    </View>
+                </View>
+                <View style={styles.dataGroup}>
+                    <Text style={styles.dataType}>Nome</Text>
+                    <Text style={styles.dataValue}>valor do nome</Text>
+                </View>
+                <View style={styles.dataGroup}>
+                    <Text style={styles.dataType}>Sobrenome</Text>
+                    <Text style={styles.dataValue}>valor do sobrenome</Text>
+                </View>
+                <View style={styles.dataGroup}>
+                    <Text style={styles.dataType}>E-mail</Text>
+                    <Text style={styles.dataValue}>valor do e-mail</Text>
+                </View>
             </View>
         </ScrollView>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginHorizontal:12
+        alignItems: 'center',
+        backgroundColor: '#FFFFFF',
+    },
+
+    buttonGroup: {
+        width: 330,
+        margin: 14,
+        marginBottom: 0,
+        borderColor: "#ECECEC",
+        borderRadius: 5,
+        padding: 10,
+        textAlign: "center",
+        alignItems: "flex-end",
+        fontSize: 15,
+        flexDirection: "column",
+        marginHorizontal:35
+    },
+
+    editGroup: {
+        width: 70,
+        height: 35,
+        borderColor: "#ECECEC",
+        borderRadius: 5,
+        textAlign: "center",
+        alignItems: "center",
+        justifyContent: 'space-around',
+        fontSize: 15,
+        flexDirection: "row",
+    },
+
+    logoedit: {
+        width:22,
+        height:25,
+        borderWidth:1,
+    },
+
+    dataGroup: {
+        width: 330,
+        height: 70,
+        margin: 14,
+        borderColor: "#ECECEC",
+        borderRadius: 5,
+        padding: 10,
+        textAlign: "center",
+        fontSize: 15,
+        marginHorizontal:35
+    },
+
+    dataGroupImageField: {
+        width: 330,
+        height: 110,
+        margin: 14,
+        borderColor: "#ECECEC",
+        borderRadius: 5,
+        padding: 10,
+        textAlign: "center",
+        alignItems: "center",
+        fontSize: 15,
+        marginHorizontal:35
+    },
+
+    dataType: {
+        color:"black",
+        fontSize:16,
+        marginTop:3,
+        fontWeight:"bold"
+    },
+
+    dataValue: {
+        color:"#878787",
+        fontSize:14,
     },
 
     imagesContainer: {
@@ -175,5 +314,35 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontSize: 16,
         marginLeft: 16,
-    }
+    },
+    imagesInput: {
+        backgroundColor: 'rgba(255, 255, 255, 1)',
+        borderStyle: 'dashed',
+        borderColor: '#96D2F0',
+        borderWidth: 1.4,
+        borderRadius: 20,
+        position:'absolute',
+        left:40,
+        bottom:40,
+    },
+    uploadedImageContainer:{
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        borderStyle: 'dashed',
+        borderColor: '#96D2F0',
+        borderWidth: 1.4,
+        borderRadius: 20,
+        width:64,
+        height:64,
+        margin:5,
+        flexDirection:'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    uploadedImage:{
+        width:64,
+        height:64,
+        borderRadius:20,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });

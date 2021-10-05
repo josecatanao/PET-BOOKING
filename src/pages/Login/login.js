@@ -73,9 +73,7 @@ export default function Login() {
 const styles = StyleSheet.create({
     blocoTudo: {
         flex: 1,
-        borderWidth: 1,
         alignItems: 'center',
-        justifyContent: "center",
         backgroundColor: "#FFFFFF"
     },
     foto1: {

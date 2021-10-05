@@ -112,8 +112,6 @@ export default function ProfileData() {
         <View style={styles.container}>
         <ScrollView>
 
-            <Text style={styles.title}>Cadastre-se Aqui</Text>
-
             <View style={styles.uploadedImageContainer}>
                 <RectButton style={styles.uploadedImageContainer} onPress={handleSelectImage}>
                     <Image
@@ -191,7 +189,6 @@ export default function ProfileData() {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        borderWidth: 1,
         alignItems: 'center',
         justifyContent: "center",
         backgroundColor: "#FFFFFF"

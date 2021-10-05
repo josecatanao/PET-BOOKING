@@ -37,7 +37,6 @@ export default function Cadastro() {
     }
     return(
         <View  style={styles.blocoTudo}> 
-            <Text  style={styles.titulo} >Cadastro da agenda</Text>
             <Image
                  style={styles.foto1}
                  source={require('../../../assets/foto1.jpg')}
@@ -69,14 +68,14 @@ export default function Cadastro() {
             <Text style={styles.buttonText}>Cadastrar</Text>
         </TouchableOpacity>
 
-
+        {/*
         <TouchableOpacity
             style={styles.button}
             onPress={verHorario}>
         
             <Text style={styles.buttonText}>Ver Agenda</Text>
         </TouchableOpacity>
-        
+        */}
         </View> 
 
         
@@ -88,9 +87,7 @@ export default function Cadastro() {
 const styles = StyleSheet.create({
     blocoTudo:{
         flex:1,
-        borderWidth: 1,
         alignItems:'center',
-        justifyContent:"center",
         backgroundColor:"#FFFFFF"
     },
     foto1: {

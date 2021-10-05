@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import ProfileDetails from '../pages/profile/ProfileDetails';
 import ProfileData from '../pages/profile/CreateProfile/ProfileData';
+import ProfileUpdate from '../pages/profile/UpdateProfile/ProfileData';
 import Cadastro from '../pages/CadastroAgenda/paginaCadatroAgenda';
 import Agenda from "../pages/HorariosAgendados/paginaHorariosAgendados"
 import Diascadastrados from "../pages/HorariosAgendados/paginaDiascadastrados"
@@ -17,70 +18,77 @@ export default function Routes() {
 
     return (
         <NavigationContainer>
-        <Navigator>
-       
-        <Screen
+        <Navigator>  
+            <Screen
                 name="Login"
                 component={Login}
                 options={{
-                    headerShown: false,
-
+                    headerShown: true,
+                    header: () => <Header title='Login'/>
                 }}
             />
-
-           
-            <Screen
-                name="dias cadastrados"
-                component={ Diascadastrados}
-                options={{
-                    headerShown: false,
-                    header: () => <Header title='dias cadastrados'/>
-                }}
-            />
-
+              
             <Screen
                 name="Agenda"
                 component={Agenda}
                 options={{
-                    headerShown: false,
-                   
-                }}
-            />
-           
-          <Screen
-                name="cadastro"
-                component={Cadastro}
-                options={{
-                    headerShown: false,
-                    header: () => <Header title='Cadastro'/>
+                    headerShown: true,
+                    header: () => <Header showImageField title='Horários agendados'/>
                 }}
             />
             
-                    
+            <Screen
+                 name="localizacao"
+                 component={PagLocalizacao}
+                 options={{
+                     headerShown: true,
+                     header: () => <Header showBackButton showImageField title='Ver localização'/>
+                 }}
+            />
+            
+           <Screen
+                name="dias cadastrados"
+                component={ Diascadastrados}
+                options={{
+                    headerShown: true,
+                    header: () => <Header showImageField title='Dias cadastrados'/>
+                }}
+            />
+
+           <Screen
+                name="cadastro"
+                component={Cadastro}
+                options={{
+                    headerShown: true,
+                    header: () => <Header showBackButton title='Cadastro da agenda'/>
+                }}
+            />
+      
             <Screen
                 name="ProfileData"
                 component={ProfileData}
                 options={{
-                    headerShown: false,
-                   
+                    headerShown: true,
+                    header: () => <Header title='Cadastre-se aqui'/>
                 }}
             />
-
+             
             <Screen
                 name="ProfileDetails"
                 component={ProfileDetails}
                 options={{
                     headerShown: true,//depois colocar true
-                    header: () => <Header title='Seus dados'/>
+                    header: () => <Header showBackButton title='Seus dados'/>
                 }}
             />
-             <Screen
-                 name="localizacao"
-                 component={PagLocalizacao}
-                 options={{
-                     headerShown: false,
-                     header: () => <Header title='Ver localização'/>
-                 }}
+            
+            <Screen
+                name="ProfileUpdate"
+                component={ProfileUpdate}
+                options={{
+                    headerShown: true,
+                    header: () => <Header showX title='Atualizar dados'/>
+                }}
             />
             
         </Navigator>
