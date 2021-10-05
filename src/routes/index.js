@@ -7,6 +7,7 @@ import Cadastro from '../pages/CadastroAgenda/paginaCadatroAgenda';
 import Agenda from "../pages/HorariosAgendados/paginaHorariosAgendados"
 import Diascadastrados from "../pages/HorariosAgendados/paginaDiascadastrados"
 import Login from '../pages/Login/login';
+import PagLocalizacao from '../pages/Localizacao/pagLocalizacao';
 
 import  Header  from '../components/Header';
 
@@ -72,6 +73,14 @@ export default function Routes() {
                     headerShown: true,//depois colocar true
                     header: () => <Header title='Seus dados'/>
                 }}
+            />
+             <Screen
+                 name="localizacao"
+                 component={PagLocalizacao}
+                 options={{
+                     headerShown: false,
+                     header: () => <Header title='Ver localização'/>
+                 }}
             />
             
         </Navigator>
